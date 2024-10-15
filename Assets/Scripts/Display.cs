@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Display: MonoBehaviour
 {
-    [SerializeField] private int width;
-    [SerializeField] private int height;
+    public int originX, originY;
+    public int width;
+    public int height;
+    
     [SerializeField] private int depth;
     [SerializeField] private int seed;
         
-    private BSP2 _bsp;
-    private List<Room> roomList; 
+    public BSP2 _bsp;
+    public List<Room> roomList; 
 
     [ContextMenu("Start BSP")] private void Start()
     { 

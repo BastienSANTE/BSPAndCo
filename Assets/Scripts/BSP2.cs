@@ -7,7 +7,6 @@ using Random = UnityEngine.Random;
 
 public class BSP2
 {
-    
     public void Init(int seed)
     {
         Random.InitState(seed);
@@ -37,8 +36,8 @@ public class BSP2
         
         Debug.Log($"There are {rooms.Count} rooms");
         depth--;
-        DrawRooms(rooms);
         BSP(rooms, depth);
+        DrawRooms(rooms);
         return rooms;
     }
 
@@ -68,6 +67,7 @@ public class BSP2
             roomB = new Room(slicedRoom.orx, sliceCoords.y, slicedRoom.width, (slicedRoom.height - roomA.height)); 
             canvas.Add(roomA);
             canvas.Add(roomB);
+            Debug.Log("Removing sliced room");
             canvas.Remove(slicedRoom);
         } else
         {
@@ -75,13 +75,13 @@ public class BSP2
             roomB = new Room(sliceCoords.x, slicedRoom.ory, (slicedRoom.width - roomA.width), slicedRoom.height);
             canvas.Add(roomA);
             canvas.Add(roomB);
+            Debug.Log("Removing sliced room");
             canvas.Remove(slicedRoom);
         }
         
         Debug.Log($"Sliced at {sliceCoords}, {sliceDir}\n" +
                   $"Room A : {roomA.orx}, {roomA.ory}, {roomA.width}, {roomA.height}\n" +
                   $"Room B : {roomB.orx}, {roomB.ory}, {roomB.width}, {roomB.height}");
-        
         return canvas;
     }
 
@@ -107,5 +107,8 @@ public class BSP2
         Debug.DrawLine(
             new Vector3(ex, y, 0),
             new Vector3(ex, ey, 0), c, duration);
+        Debug.DrawLine(
+            new Vector3(x, y, 0),
+            new Vector3(ex, ey, 0), Color.blue, duration);
     }
 }
