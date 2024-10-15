@@ -1,22 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Display: MonoBehaviour
 {
-    [SerializeField] private int _width;
-    [SerializeField] private int _height;
+    [SerializeField] private int width;
+    [SerializeField] private int height;
+    [SerializeField] private int depth;
+    [SerializeField] private int seed;
         
     private BSP2 _bsp;
+    private List<Room> roomList; 
 
-    private void Start()
+    [ContextMenu("Start BSP")] private void Start()
     { 
         _bsp = new BSP2();
         DisplayRooms(); // Start the generation;
     }
-
-    [ContextMenu("Display Rooms")]
-    public void DisplayRooms()
+    
+    private void DisplayRooms()
     {
-        _bsp.BSP();
+        roomList = new List<Room> { new Room(0, 0, width, height) };
+        _bsp.Init(seed);
+        _bsp.BSP(roomList, depth);
     }
 }
