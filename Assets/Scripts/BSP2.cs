@@ -37,7 +37,6 @@ public class BSP2
         Debug.Log($"There are {rooms.Count} rooms");
         depth--;
         BSP(rooms, depth);
-        DrawRooms(rooms);
         return rooms;
     }
 
@@ -85,7 +84,7 @@ public class BSP2
         return canvas;
     }
 
-    private void DrawRooms(List<Room> rooms)
+    public void DrawRooms(List<Room> rooms)
     {
         foreach (Room r in rooms)
         {
@@ -107,8 +106,5 @@ public class BSP2
         Debug.DrawLine(
             new Vector3(ex, y, 0),
             new Vector3(ex, ey, 0), c, duration);
-        Debug.DrawLine(
-            new Vector3(x, y, 0),
-            new Vector3(ex, ey, 0), Color.blue, duration);
     }
 }
