@@ -10,22 +10,22 @@ public class Display: MonoBehaviour
     [SerializeField] private int depth;
     [SerializeField] private int seed;
         
-    public BSP2 _bsp;
+    public BSP2 bsp;
     public Delaunay delaunay;
     public List<Room> roomList; 
 
     [ContextMenu("Start BSP")] private void Start()
     { 
-        _bsp = new BSP2();
+        bsp = new BSP2();
         DisplayRooms(); // Start the generation;
     }
     
     private void DisplayRooms()
     {
         roomList = new List<Room> { new Room(0, 0, width, height) };
-        _bsp.Init(seed);
-        _bsp.BSP(roomList, depth);
-        _bsp.DrawRooms(roomList);
+        bsp.Init(seed);
+        bsp.BSP(roomList, depth);
+        bsp.DrawRooms(roomList);
         delaunay.DelaunayExec(roomList);
     }
 }
